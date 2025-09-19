@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>宝藏网站</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --clr-primary: #1e3a8a;
+            --clr-secondary: #2563eb;
+            --clr-accent: #60a5fa;
+            --clr-bg: #f3f4f6;
+            --clr-card: #ffffff;
+            --clr-text: #111827;
+            --clr-text-light: #6b7280;
+            --font: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --transition: 0.3s ease;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--clr-bg);
+            color: var(--clr-text);
+            font-family: var(--font);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        a {
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        /* 容器 */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* 头部样式 */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary));
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* 模块标题 */
+        section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--clr-primary);
+            display: inline-block;
+            padding-bottom: 8px;
+            color: var(--clr-primary);
+            font-weight: 600;
+        }
+
+        /* 卡片网格 */
+        .grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .card {
+            background: var(--clr-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--clr-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card:hover img {
+            transform: scale(1.03);
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--clr-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-content h3 i {
+            color: var(--clr-accent);
+            font-size: 1.2rem;
+        }
+
+        .card-content p {
+            color: var(--clr-text-light);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .link-indicator {
+            display: inline-flex;
+            align-items: center;
+            color: var(--clr-secondary);
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .link-indicator i {
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+
+        .card:hover .link-indicator i {
+            transform: translateX(3px);
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            color: var(--clr-text-light);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-laptop-code"></i> 宝藏网站</h1>
+            <p>点击下方卡片查看</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 作品展示 -->
+        <section id="portfolio">
+            <h2><i class="fas fa-folder-open"></i>网站</h2>
+            <div class="grid grid-2">
+                <!-- 每个卡片包裹在a标签中并添加链接 -->
+                <a href="https://example.com/project1" target="_blank" class="card">
+                    <img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.9tSEVFN0I6YNPit7ENmXiAAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="网页设计作品">
+                    <div class="card-content">
+                        <h3>响应式网页设计 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>该项目展示了响应式设计原理在不同设备上的应用，使用了现代CSS框架实现自适应布局。</p>
+                        <span class="link-indicator">查看网站详情 <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://www.fangpi.net/" target="_blank" class="card">
+                    <img src="https://img.ixintu.com/download/jpg/201912/b8d8d15b5fca00e25d1c4a4d7eee8b18.jpg!con"
+                        alt="音乐下载">
+                    <div class="card-content">
+                        <h3>音乐下载 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>这个网址可以下载到几乎全网的音乐，再也不用因为找不到音乐而发愁了</p>
+                        <span class="link-indicator">查看网站详情 <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://www.ncat2.app/" target="_blank" class="card">
+                    <img src="https://ts3.tc.mm.bing.net/th/id/OIP-C.geFSC_8zGrLIT8NmrhsJtwAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="全网影视免费看">
+                    <div class="card-content">
+                        <h3>看剧神器 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>这个网站提供了全网的影视资源，支持高清画质，各个平台的付费资源都可以在这找到</p>
+                        <span class="link-indicator">查看网站详情 <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://zaiwen.xueban.org.cn/" target="_blank" class="card">
+                    <img src="https://www.zaiwenai.com/png/logo-DlXrvrzW.png" alt="AI 网站">
+                    <div class="card-content">
+                        <h3>在问AI <i class="fas fa-external-link-alt"></i></h3>
+                        <p>该网站集合各大主流的大模型，同时支持AI绘画、AI视频生成，是一个不错的在线AI工具</p>
+                        <span class="link-indicator">查看网站详情 <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://ttsmaker.cn/" target="_blank" class="card">
+                    <img src="https://anifx8.com/wp-content/uploads/2025/03/%E6%96%87%E5%AD%97%E8%BD%AC%E8%AF%AD%E9%9F%B3-800x500.png"
+                        alt="文字转语音">
+                    <div class="card-content">
+                        <h3>在线文字转语音 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>该网站支持多种语言，包括中文、英语、日语、韩语、法语、德语、西班牙语、阿拉伯语等50多种语言，以及超过300种语音风格。您可以用它制作视频配音，也可用于有声书朗读，或下载音频文件用于商业用途（完全免费
+                        </p>
+                        <span class="link-indicator">查看网站详情 <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://byrutgame.org/" target="_blank" class="card">
+                    <img src="https://pica.zhimg.com/v2-f49bd1351b5213f65f7774bd495d568e_1440w.jpg" alt="游戏破解">
+                    <div class="card-content">
+                        <h3>俄罗斯游戏破解网站 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>是俄罗斯最大的游戏破解网站，从热门大作到经典老游戏，包含了Steam等平台的所有游戏（遇到好玩的游戏记得补票哦！）</p>
+                        <span class="link-indicator">查看网站详情 <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a href="https://www.wenxiaobai.com/" target="_blank" class="card">
+                    <img src="https://ai-to.cn/wp-content/uploads/2025/02/1739722184-wenxiaobai-logo.png" alt="AI 网站">
+                    <div class="card-content">
+                        <h3>问小白AI <i class="fas fa-external-link-alt"></i></h3>
+                        <p>该网站主要是提供DeepSeek的服务，再也不用忍受官网服务器繁忙的问题了，这个网站部署的DeepSeek响应迅速，并且还支持对话记录的保存</p>
+                        <span class="link-indicator">查看网站详情 <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <p>© 2023 XiaoSLM | 所有信息均搜集自互联网，如有侵权，请联系本人删除</p>
+    </footer>
+
+    <script>
+        // 添加卡片点击的视觉反馈
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousedown', function () {
+                this.style.transform = 'translateY(2px)';
+            });
+
+            card.addEventListener('mouseup', function () {
+                this.style.transform = '';
+            });
+
+            card.addEventListener('mouseleave', function () {
+                this.style.transform = '';
+            });
+        });
+    </script>
+</body>
+
+</html>

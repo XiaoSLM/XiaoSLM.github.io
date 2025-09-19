@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>宝藏网站合集</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --clr-primary: #1e3a8a;
+            --clr-secondary: #2563eb;
+            --clr-accent: #60a5fa;
+            --clr-bg: #f3f4f6;
+            --clr-card: #ffffff;
+            --clr-text: #111827;
+            --clr-text-light: #6b7280;
+            --clr-nav-bg: #ffffff;
+            --clr-nav-active: #1e3a8a;
+            --font: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            --transition: 0.3s ease;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 10px 20px rgba(0, 0, 0, 0.12);
+            --shadow-nav: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: var(--clr-bg);
+            color: var(--clr-text);
+            font-family: var(--font);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        a {
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        /* 容器 */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        /* 头部样式 */
+        header {
+            text-align: center;
+            padding: 30px 0;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--clr-primary), var(--clr-secondary));
+            color: white;
+            border-radius: 0 0 20px 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -60px;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* 导航栏 */
+        .nav-container {
+            background: var(--clr-nav-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin: 30px auto;
+            box-shadow: var(--shadow-nav);
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .nav-tab {
+            padding: 10px 20px;
+            background: #f0f4ff;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            color: var(--clr-primary);
+            border: 1px solid transparent;
+        }
+
+        .nav-tab:hover {
+            background: #dbe7ff;
+            transform: translateY(-2px);
+        }
+
+        .nav-tab.active {
+            background: var(--clr-nav-active);
+            color: white;
+            box-shadow: 0 5px 15px rgba(30, 58, 138, 0.3);
+        }
+
+        /* 模块标题 */
+        section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            padding-bottom: 8px;
+            color: var(--clr-primary);
+            font-weight: 600;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--clr-primary), var(--clr-accent));
+            border-radius: 2px;
+        }
+
+        /* 卡片网格 */
+        .grid {
+            display: grid;
+            gap: 25px;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .card {
+            background: var(--clr-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            opacity: 1;
+            transform: translateY(0);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--clr-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card:hover img {
+            transform: scale(1.03);
+        }
+
+        .card-content {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--clr-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-content h3 i {
+            color: var(--clr-accent);
+            font-size: 1.2rem;
+        }
+
+        .card-content p {
+            color: var(--clr-text-light);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .link-indicator {
+            display: inline-flex;
+            align-items: center;
+            color: var(--clr-secondary);
+            font-weight: 500;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .link-indicator i {
+            margin-left: 5px;
+            transition: var(--transition);
+        }
+
+        .card:hover .link-indicator i {
+            transform: translateX(3px);
+        }
+
+        .category-tag {
+            display: inline-block;
+            background: #e0e7ff;
+            color: var(--clr-primary);
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 10px;
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .nav-tab {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* 页脚 */
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+            color: var(--clr-text-light);
+            font-size: 0.95rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--clr-secondary);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-content container">
+            <h1><i class="fas fa-gem"></i> 宝藏网站合集</h1>
+            <p>精心收集的实用网站，点击分类查看不同类型的宝藏资源</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- 分类导航 -->
+        <div class="nav-container">
+            <div class="nav-tabs">
+                <div class="nav-tab active" data-category="all">全部网站</div>
+                <div class="nav-tab" data-category="music">音乐下载</div>
+                <div class="nav-tab" data-category="video">影视资源</div>
+                <div class="nav-tab" data-category="ai">AI工具</div>
+                <div class="nav-tab" data-category="tool">实用工具</div>
+                <div class="nav-tab" data-category="game">游戏资源</div>
+            </div>
+        </div>
+
+        <!-- 网站展示区域 -->
+        <section id="portfolio">
+            <h2><i class="fas fa-folder-open"></i> 精选网站</h2>
+            <div class="grid grid-2">
+                <!-- 音乐类 -->
+                <a href="https://www.fangpi.net/" target="_blank" class="card" data-category="music">
+                    <img src="https://img.ixintu.com/download/jpg/201912/b8d8d15b5fca00e25d1c4a4d7eee8b18.jpg!con"
+                        alt="放屁音乐下载">
+                    <div class="card-content">
+                        <h3>放屁音乐下载 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>可以下载到几乎全网的音乐，再也不用因为找不到音乐而发愁了。</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">音乐下载</span>
+                    </div>
+                </a>
+
+                <a href="https://pjmp3.com/" target="_blank" class="card" data-category="music">
+                    <img src="img/paojiao.png" alt="泡椒音乐">
+                    <div class="card-content">
+                        <h3>泡椒音乐 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>在线音乐搜索，可以在线免费下载全网MP3付费歌曲、流行音乐、经典老歌等。 曲库完整，更新迅速，试听流畅，支持高品质|无损音质</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">音乐下载</span>
+                    </div>
+                </a>
+
+                <a href="https://www.5song.xyz/" target="_blank" class="card" data-category="music">
+                    <img src="img/5song.png" alt="5song音乐">
+                    <div class="card-content">
+                        <h3>5song音乐 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>无损音乐下载</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">音乐下载</span>
+                    </div>
+                </a>
+
+                <!-- 影视类 -->
+                <a href="https://www.ncat2.app/" target="_blank" class="card" data-category="video">
+                    <img src="https://ts3.tc.mm.bing.net/th/id/OIP-C.geFSC_8zGrLIT8NmrhsJtwAAAA?rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="全网影视免费看">
+                    <div class="card-content">
+                        <h3>网飞猫 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>这个网站提供了全网的影视资源，支持高清画质，各个平台的付费资源都可以在这找到。</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">影视资源</span>
+                    </div>
+                </a>
+
+                <a href="https://www.keke1.app/" target="_blank" class="card" data-category="video">
+                    <img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.1LeMfjlIxxfuKx7gyYAPYQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="全网影视免费看">
+                    <div class="card-content">
+                        <h3>可可影视 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>这个网站提供了全网的影视资源，支持高清画质，各个平台的付费资源都可以在这找到。</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">影视资源</span>
+                    </div>
+                </a>
+
+                <!-- AI工具类 -->
+                <a href="https://zaiwen.xueban.org.cn/" target="_blank" class="card" data-category="ai">
+                    <img src="https://www.zaiwenai.com/png/logo-DlXrvrzW.png" alt="AI 网站">
+                    <div class="card-content">
+                        <h3>在问AI <i class="fas fa-external-link-alt"></i></h3>
+                        <p>该网站集合各大主流的大模型，同时支持AI绘画、AI视频生成，是一个不错的在线AI工具。</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">AI工具</span>
+                    </div>
+                </a>
+
+                <!-- 实用工具类 -->
+                <a href="https://ttsmaker.cn/" target="_blank" class="card" data-category="tool">
+                    <img src="https://anifx8.com/wp-content/uploads/2025/03/%E6%96%87%E5%AD%97%E8%BD%AC%E8%AF%AD%E9%9F%B3-800x500.png"
+                        alt="文字转语音">
+                    <div class="card-content">
+                        <h3>在线文字转语音 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>支持50多种语言和300多种语音风格，完全免费，可用于视频配音、有声书朗读等。</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">实用工具</span>
+                    </div>
+                </a>
+
+                <a href="https://snapany.com/zh" target="_blank" class="card" data-category="tool">
+                    <img src="img/jiexi.png" alt="视频解析下载">
+                    <div class="card-content">
+                        <h3>万能视频图片解析下载<i class="fas fa-external-link-alt"></i></h3>
+                        <p>使用 SnapAny 在线视频/图片下载器，无需额外的软件即可轻松从网络保存您喜欢的视频和图片。一键将视频图片保存到手机相册、电脑本地。</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">实用工具</span>
+                    </div>
+                </a>
+
+                <!-- 游戏资源类 -->
+                <a href="https://byrutgame.org/" target="_blank" class="card" data-category="game">
+                    <img src="https://pica.zhimg.com/v2-f49bd1351b5213f65f7774bd495d568e_1440w.jpg" alt="游戏破解">
+                    <div class="card-content">
+                        <h3>俄罗斯游戏破解网站 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>俄罗斯最大的游戏破解网站，包含Steam等平台的所有游戏（遇到好玩的游戏记得补票哦！）</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">游戏资源</span>
+                    </div>
+                </a>
+
+                <a href="http://mcapks.net/" target="_blank" class="card" data-category="game">
+                    <img src="https://ts2.tc.mm.bing.net/th/id/OIP-C.uTcdr7jxnGDBxyCUb0IGfAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3"
+                        alt="游戏破解">
+                    <div class="card-content">
+                        <h3>我的世界国际版下载 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>该网站提供了所有版本的国际版的下载，如果玩腻了WY版，可以体验一下（记得补票哦！）</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">游戏资源</span>
+                    </div>
+                </a>
+
+                <a target="_blank" class="card" t data-category="game">
+                    <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.Rwv7xoI8EIvl7vZLBhgPJQHaFO?w=243&h=180&c=7&r=0&o=7&dpr=1.5&pid=1.7&rm=3"
+                        alt="https://www.touchgal.us/galgame
+                               https://www.amoebi.com/">
+                    <div class="card-content">
+                        <h3>旮旯给木游戏下载 <i class="fas fa-external-link-alt"></i></h3>
+                        <p>免费的Galgame资源下载，Galgame资源集大成者</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">游戏资源</span>
+                    </div>
+                </a>
+
+
+                <!-- AI工具类 -->
+                <a href="https://www.wenxiaobai.com/" target="_blank" class="card" data-category="ai">
+                    <img src="https://ai-to.cn/wp-content/uploads/2025/02/1739722184-wenxiaobai-logo.png" alt="AI 网站">
+                    <div class="card-content">
+                        <h3>问小白AI <i class="fas fa-external-link-alt"></i></h3>
+                        <p>提供DeepSeek的服务，响应迅速，支持对话记录保存，完美替代官方服务。</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">AI工具</span>
+                    </div>
+                </a>
+
+                <!-- 实用工具类 -->
+                <a href="https://www.remove.bg/" target="_blank" class="card" data-category="tool">
+                    <img src="https://assets-global.website-files.com/5f3e19a181a5730a9a5016cf/5f9c437a15c0e2d5d86d7adc_Remove-BG-User-Guide-thumbnail.png"
+                        alt="图片背景移除">
+                    <div class="card-content">
+                        <h3>Remove.bg <i class="fas fa-external-link-alt"></i></h3>
+                        <p>在线移除图片背景，只需上传图片，5秒内即可获得透明背景图片。</p>
+                        <div class="link-indicator">访问网站 <i class="fas fa-arrow-right"></i></div>
+                        <span class="category-tag">实用工具</span>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <p>© 2023 XiaoSLM | 所有信息均搜集自互联网，如有侵权，请联系本人删除</p>
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">13</span>
+                <span>精选网站</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">6</span>
+                <span>资源分类</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">100%</span>
+                <span>免费使用</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 导航分类功能
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.nav-tab');
+            const cards = document.querySelectorAll('.card');
+
+            // 默认显示所有卡片
+            showAllCards();
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function () {
+                    // 更新活动标签
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const category = this.getAttribute('data-category');
+
+                    if (category === 'all') {
+                        showAllCards();
+                    } else {
+                        filterCards(category);
+                    }
+                });
+            });
+
+            function showAllCards() {
+                cards.forEach(card => {
+                    card.style.display = 'flex';
+                    card.style.animation = 'fadeIn 0.5s ease-out';
+                });
+            }
+
+            function filterCards(category) {
+                cards.forEach(card => {
+                    if (card.getAttribute('data-category') === category) {
+                        card.style.display = 'flex';
+                        card.style.animation = 'fadeIn 0.5s ease-out';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // 卡片点击效果
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('mousedown', function () {
+                    this.style.transform = 'translateY(2px)';
+                });
+
+                card.addEventListener('mouseup', function () {
+                    this.style.transform = '';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    this.style.transform = '';
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
